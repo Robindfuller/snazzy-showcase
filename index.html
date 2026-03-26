@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snazzy Showcase</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root {
+  --color-bg:             #1c1c1e;
+  --color-surface:        #242426;
+  --color-surface-raised: #2c2c2e;
+  --color-surface-hover:  #323234;
+  --color-border:         #3a3a3c;
+  --color-border-subtle:  #2c2c2e;
+  --color-accent:         #9b5fcc;
+  --color-accent-hover:   #a96fd8;
+  --color-accent-dim:     rgba(155, 95, 204, 0.18);
+  --color-text-primary:   #f2f2f7;
+  --color-text-secondary: #8e8e93;
+  --color-text-tertiary:  #636366;
+  --color-text-on-accent: #ffffff;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 40px 24px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-text-primary);
+}
+
+header h1 span { color: var(--color-accent); }
+
+header p {
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border);
+}
+
+.card-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  margin-bottom: 16px;
+  background: var(--color-surface-raised);
+}
+
+.card-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+  background: var(--color-accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-accent);
+  user-select: none;
+}
+
+.card h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card .desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+}
+
+.badge-port {
+  background: var(--color-surface-raised);
+  color: var(--color-text-tertiary);
+}
+
+/* Detail page */
+.detail {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+
+.back-link:hover { color: var(--color-accent-hover); }
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.detail-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  background: var(--color-surface-raised);
+  flex-shrink: 0;
+}
+
+.detail-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.detail-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.detail-header .badges { margin-top: 8px; }
+
+.detail-body {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  min-height: 420px;
+}
+
+.detail-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+.detail-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-tertiary);
+  margin-bottom: 10px;
+}
+
+.detail-body ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.detail-body ul li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  padding: 5px 0;
+  padding-left: 16px;
+  position: relative;
+}
+
+.detail-body ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-normal), background var(--transition-normal);
+}
+
+.github-link:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface-hover);
+}
+
+.github-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-text-primary);
+}
+
+.detail-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.detail-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+  transition: border-color var(--transition-normal), color var(--transition-normal);
+}
+
+.detail-nav a:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.detail-nav a.next { margin-left: auto; }
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="#"><span>Snazzy</span> Showcase</a></h1>
+  <p>A collection of vibe-coded projects</p>
+</header>
+<div id="app"></div>
+<script>
+const ghIcon = `<svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`;
+
+const projects = [
+  {
+    name: "SnazzyButtons",
+    desc: "Stream Deck controller & web UI editor",
+    long: "An extensible Stream Deck controller and web UI editor for building programmable dashboards, automations, and custom control surfaces. Features a plugin-based architecture with 12+ integrations.",
+    features: ["Native Stream Deck hardware support", "Visual web UI for design, testing, and live control", "Element-first tile editing (Primary + Elements + Behavior)", "Plugin system with 12+ plugins (Home Assistant, media, Hyprland, timers)", "Custom device types and per-device configuration", "Templates and conditional logic support"],
+    tech: ["Rust"], icon: "SnazzyButtons/icon.png", port: 8787, started: "20 Feb",
+    github: "https://github.com/Robindfuller/snazzy-buttons"
+  },
+  {
+    name: "SnazzyPodcasts",
+    desc: "Desktop podcast player with sync",
+    long: "A native desktop podcast player built with Tauri, Svelte, and Rust, inspired by Apple Podcasts. Includes podcast discovery, library management, offline playback, listening stats, and a self-hosted sync server for mobile access.",
+    features: ["Podcast discovery from iTunes with top charts", "Streaming and download for offline listening", "Smart playlists (Unfinished, Downloaded, Short, Long)", "Listening statistics with daily streak tracking", "Sleep timer and MPRIS media session integration", "PWA for mobile listening via self-hosted sync server"],
+    tech: ["Tauri", "Svelte", "Rust"], icon: "SnazzyPodcasts/src-tauri/icons/icon.png", port: 15432, started: "7 Mar",
+    github: "https://github.com/Robindfuller/snazzy-podcasts"
+  },
+  {
+    name: "SnazzyFlex",
+    desc: "Automated media wishlist for put.io",
+    long: "An automated media wishlist manager for put.io. Unified search across TVMaze, Cinemeta, and MusicBrainz, with automatic scheduled downloads and torrent quality filtering.",
+    features: ["Unified media discovery (TV, movies, music)", "TV episode tracking via TVMaze", "Wanted list with quality filters (resolution, audio, size, format)", "Automatic scheduled downloads with torrent search", "put.io integration with OAuth and magnet sending", "Bundled SQLite database, self-contained"],
+    tech: ["Rust", "Svelte"], icon: "SnazzyFlex/frontend/public/icon-512.png", port: 9090, started: "11 Mar",
+    github: "https://github.com/Robindfuller/snazzy-flex"
+  },
+  {
+    name: "SnazzyAssessAndProgress",
+    desc: "Privacy-first nursery assessment tool",
+    long: "Captures voice and text observations for early-years practitioners, automatically tags them to EYFS development areas, and generates written assessments, grades, and parent newsletters using AI \u2014 all running locally with no data uploaded.",
+    features: ["Voice recording with automatic transcription", "Smart child name detection from transcripts", "EYFS framework tagging and assessment generation", "Per-child weekly/monthly/termly report generation", "Parent newsletter generation from group diary", "Excel and ZIP export"],
+    tech: ["Rust", "Svelte"], icon: "SnazzyAssessAndProgress/icon.png", port: 3000, started: "13 Mar",
+    github: "https://github.com/Robindfuller/snazzy-assessments"
+  },
+  {
+    name: "SnazzyImageMaker",
+    desc: "AI image generation with DALL-E & GPT",
+    long: "A web-based image generation app powered by OpenAI\u2019s DALL-E and GPT Image APIs. Offers a chat-style interface with server-side persistence, image editing with reference attachments, and API key management.",
+    features: ["Image generation with DALL-E 2, DALL-E 3, and GPT Image 1", "Image editing with reference attachment", "Chat history stored server-side in SQLite", "OpenAI API key configuration via web UI", "PWA support for mobile/desktop installation", "Drag-and-drop and paste image attachments"],
+    tech: ["Python", "Flask"], icon: "SnazzyImageMaker/icon-512.png", port: 8080, started: "14 Mar",
+    github: "https://github.com/Robindfuller/snazzy-image-maker"
+  },
+  {
+    name: "SnazzyRemotePlayer",
+    desc: "Android TV media player (Chromecast-like)",
+    long: "A network media player for Android TV that works like a Chromecast. Any app can POST a URL and it plays. Supports video and music playback with web remote, Plex integration, REST API, and a retro OSD.",
+    features: ["Dumb player architecture (POST URL and play)", "HLS, DASH, MP4, MKV, FLAC, MP3, AAC support", "Queue management with auto-advance", "Web remote with d-pad and transport controls", "Plex integration with library browsing", "Retro OSD with bouncing screensaver"],
+    tech: ["Node.js", "Kotlin"], icon: "SnazzyRemotePlayer/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png", port: 8008, started: "15 Mar",
+    github: "https://github.com/Robindfuller/snazzy-remote-movie-player"
+  },
+  {
+    name: "SnazzyLoader",
+    desc: "Floppy disk jukebox app",
+    long: "Insert a floppy disk, read a code, and trigger an action \u2014 play an album, run a command, or open a URL. A novelty jukebox powered by actual floppy disks, with a Rust/Axum backend and Svelte frontend.",
+    features: ["Floppy disk polling and code reading", "Plugin system (Cider music, shell commands, URL opening)", "Dashboard and disk manager UI", "Music search and label maker tools", "Apple Music integration via Cider plugin"],
+    tech: ["Rust", "Svelte"], icon: "SnazzyLoader/icon.png", port: 3333, started: "16 Mar",
+    github: "https://github.com/Robindfuller/snazzy-loader"
+  },
+  {
+    name: "SnazzyECGViewer",
+    desc: "Privacy-first 12-lead ECG & Holter viewer and reporting tool",
+    long: "A privacy-first ECG viewer for 12-lead and Holter recordings. Parses SCP-ECG, HL7 aECG, DICOM, EDF, ISHNE, and other cardiac signal files entirely client-side with zero server uploads, running in browser or as a native desktop app via Tauri.",
+    features: ["12-Lead ECG viewer with clinical-standard layouts", "Holter recording playback with HRV curves and event detection", "Non-destructive annotations saved as .ecgz bundles", "Multi-page A4 PDF export with interpretation reports", "Automated ECG interpretation algorithm", "Multiple file format support (SCP, HL7 aECG, DICOM, EDF, ISHNE)"],
+    tech: ["Svelte", "Tauri"], icon: "SnazzyECGViewer/snazzy-ecg-viewer.png", port: 5173, started: "18 Mar",
+    github: "https://github.com/Robindfuller/snazzy-ecg-viewer"
+  },
+  {
+    name: "AdsGetter",
+    desc: "Classic TV ads downloader & processor",
+    long: "A web-based scraper and downloader for classic TV advertisements from classictvads.co.uk. Features a local web interface for filtering, previewing, downloading, and auto-processing videos with customizable trim, crop, and encoding settings using FFmpeg.",
+    features: ["Scrapes classic TV ads from classictvads.co.uk", "Web UI for browsing, filtering, and preview", "Download queue management with status tracking", "Video processing pipeline (trim, crop, resize, re-encode)", "Auto-processing with configurable FFmpeg settings"],
+    tech: ["Python", "Flask"], icon: "AdsGetter/icon.png", port: 8888, started: null, github: null
+  },
+  {
+    name: "TrailersGetter",
+    desc: "Movie trailer downloader & browser",
+    long: "A web-based movie trailer discovery and download tool. Browse, search, and download trailers with a clean interface.",
+    features: ["Movie trailer browsing and search", "Download queue management", "Clean web UI"],
+    tech: ["Python", "Flask"], icon: "TrailersGetter/static/icon.png", port: null, started: null, github: null
+  },
+  {
+    name: "SnazzyShowcase",
+    desc: "Project portfolio dashboard",
+    long: "A single-page dashboard showcasing all Snazzy projects with icons, descriptions, tech badges, and detail views.",
+    features: ["Project grid with icons and badges", "Detail view with features and GitHub links", "Hash-based routing"],
+    tech: ["HTML", "JS"], icon: "SnazzyShowcase/icon.png", port: null, started: null, github: null
+  },
+  {
+    name: "SnazzyOS",
+    desc: "Retro terminal OS emulator",
+    long: "A minimalist operating system shell environment written in C. Implements a windowed UI with an LCD green aesthetic, built with SDL2 and featuring a file browser, text editor, and game launcher.",
+    features: ["SDL2-based windowed UI environment", "Custom framebuffer and font rendering", "Retro LCD green colour scheme", "File browser and text editor applications", "Game launcher and execution support", "Configurable UI scaling"],
+    tech: ["C", "SDL"], icon: null, port: null, started: null, github: null
+  },
+  {
+    name: "SuperUncleMartyn2",
+    desc: "Retro platformer game",
+    long: "A retro sprite-based platformer game featuring Uncle Martyn. Built in Rust with minifb for graphics and rodio for audio, with embedded PNG artwork and multiple game levels.",
+    features: ["Rust game engine with minifb windowing", "Sprite-based graphics rendering", "Audio support via rodio library", "Embedded PNG image assets", "Multiple game levels and music systems"],
+    tech: ["Rust"], icon: "SuperUncleMartyn2/large-uncle-martin.png", port: null, started: null, github: null
+  },
+];
+
+function renderGrid() {
+  const app = document.getElementById("app");
+  app.innerHTML = `<div class="grid" id="grid"></div>`;
+  const grid = document.getElementById("grid");
+
+  projects.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => { location.hash = p.name; };
+
+    const iconHtml = p.icon
+      ? `<img class="card-icon" src="/icon/${p.icon}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'card-avatar\\'>${p.name[0]}</div>'">`
+      : `<div class="card-avatar">${p.name[0]}</div>`;
+
+    const techBadges = p.tech.map(t => `<span class="badge">${t}</span>`).join("");
+    const portBadge = p.port ? `<span class="badge badge-port">:${p.port}</span>` : "";
+
+    card.innerHTML = `
+      ${iconHtml}
+      <h2>${p.name}</h2>
+      <p class="desc">${p.desc}</p>
+      <div class="badges">${techBadges}${portBadge}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderDetail(name) {
+  const p = projects.find(x => x.name === name);
+  if (!p) { renderGrid(); return; }
+
+  document.title = `${p.name} — Snazzy Showcase`;
+
+  const iconHtml = p.icon
+    ? `<img class="detail-icon" src="/icon/${p.icon}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'detail-avatar\\'>${p.name[0]}</div>'">`
+    : `<div class="detail-avatar">${p.name[0]}</div>`;
+
+  const techBadges = p.tech.map(t => `<span class="badge">${t}</span>`).join("");
+  const portBadge = p.port ? `<span class="badge badge-port">:${p.port}</span>` : "";
+
+  const githubHtml = p.github
+    ? `<a class="github-link" href="${p.github}" target="_blank" rel="noopener">${ghIcon} View on GitHub</a>`
+    : `<p style="font-size:13px;color:var(--color-text-tertiary)">Local project — not published on GitHub</p>`;
+
+  const features = p.features.map(f => `<li>${f}</li>`).join("");
+
+  const idx = projects.indexOf(p);
+  const prev = projects[(idx - 1 + projects.length) % projects.length];
+  const next = projects[(idx + 1) % projects.length];
+
+  document.getElementById("app").innerHTML = `
+    <div class="detail">
+      <a class="back-link" href="#">&larr; All Projects</a>
+      <div class="detail-header">
+        ${iconHtml}
+        <div>
+          <h2>${p.name}</h2>
+          <div class="badges" style="margin-top:8px">${techBadges}${portBadge}</div>
+        </div>
+      </div>
+      <div class="detail-body">
+        <p>${p.long}</p>
+        <h3>Features</h3>
+        <ul>${features}</ul>
+        ${githubHtml}
+      </div>
+      <div class="detail-nav">
+        <a href="#${prev.name}">&larr; ${prev.name}</a>
+        <a class="next" href="#${next.name}">${next.name} &rarr;</a>
+      </div>
+    </div>
+  `;
+}
+
+function route() {
+  const hash = location.hash.slice(1);
+  if (hash) {
+    renderDetail(decodeURIComponent(hash));
+  } else {
+    document.title = "Snazzy Showcase";
+    renderGrid();
+  }
+}
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
